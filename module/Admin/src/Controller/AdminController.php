@@ -1,13 +1,13 @@
 <?php
 /**
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
+ * @link      http://github.com/zendframework/ZendSkeletonAdmin for the canonical source repository
  * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
 namespace Admin\Controller;
 
-use Application\Form\ContactFormForm;
+use Admin\Form\ContactFormForm;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 
@@ -24,7 +24,7 @@ class AdminController extends AbstractActionController
 
         public function indexAction()
         {
-                $slides = $this->entityManager->getRepository(\Application\Entity\Slides::class)->findBy([],['slidesId'=>'asc']);
+                $slides = $this->entityManager->getRepository(\Admin\Entity\Slides::class)->findBy([],['slidesId'=>'asc']);
                 return new ViewModel(
                         [
                                 'slides' => $slides,
@@ -39,13 +39,13 @@ class AdminController extends AbstractActionController
         public function prestationsServiceAction()
         {
             //Nous récuperons les service ici
-            $services = $this->entityManager->getRepository(\Application\Entity\Service::class)->findBy([],['prestationServiceId'=>'asc']);
+            $services = $this->entityManager->getRepository(\Admin\Entity\Service::class)->findBy([],['prestationServiceId'=>'asc']);
             //Tableau contenant les services, sections par services y compris
             $tabServices = [];
             //Pour chaque service nous recuperons les sections
             foreach($services as $service)
             {
-                $sections = $this->entityManager->getRepository(\Application\Entity\Section::class)->findBy(['prestationServiceId'=> $service->getServiceId()]);
+                $sections = $this->entityManager->getRepository(\Admin\Entity\Section::class)->findBy(['prestationServiceId'=> $service->getServiceId()]);
                 $tab = [
                     'prestationServiceId' =>  $service->getServiceId(),
                     'libelle' =>  $service->getLibelle(),
@@ -101,10 +101,10 @@ class AdminController extends AbstractActionController
                 //Si le formulaire n'a pas été posté,
                 $form = new ContactFormForm();
                 $tabContacts=[];
-                $contacts = $this->entityManager->getRepository(\Application\Entity\Contact::class)->findBy([]);
+                $contacts = $this->entityManager->getRepository(\Admin\Entity\Contact::class)->findBy([]);
                 foreach($contacts as $contact)
                 {
-                        $adresse = $this->entityManager->getRepository(\Application\Entity\ContactLocalisatonAdresse::class)->find($contact->getContactLocalisatonAdresseId());
+                        $adresse = $this->entityManager->getRepository(\Admin\Entity\ContactLocalisatonAdresse::class)->find($contact->getContactLocalisatonAdresseId());
                         //var_dump($adresse); die();
                         $tab = [
                         'email' =>  $contact->getEmail(),
@@ -174,15 +174,15 @@ class AdminController extends AbstractActionController
         public function formationsAction()
         {
               //Nous récuperons les formations ici
-            $formations = $this->entityManager->getRepository(\Application\Entity\Formation::class)->findBy([],['libelle'=>'asc']);
+            $formations = $this->entityManager->getRepository(\Admin\Entity\Formation::class)->findBy([],['libelle'=>'asc']);
             //Tableau contenant les services, sections par services y compris
             $tabFormations = [];
             //Pour chaque service nous recuperons les sections
             foreach($formations as $formation)
             {
-                $module = $this->entityManager->getRepository(\Application\Entity\Module::class)->findOneBy(['formationId'=> $formation->getFormationId()]);
-                $type = $this->entityManager->getRepository(\Application\Entity\TypeFormation::class)->find($formation->getTypeFormationId());
-                $conditions = $this->entityManager->getRepository(\Application\Entity\ConditionParticipation::class)->findOneBy(['formationId'=> $formation->getFormationId()]);
+                $module = $this->entityManager->getRepository(\Admin\Entity\Module::class)->findOneBy(['formationId'=> $formation->getFormationId()]);
+                $type = $this->entityManager->getRepository(\Admin\Entity\TypeFormation::class)->find($formation->getTypeFormationId());
+                $conditions = $this->entityManager->getRepository(\Admin\Entity\ConditionParticipation::class)->findOneBy(['formationId'=> $formation->getFormationId()]);
                 $tab = [
                     'formationId' =>  $formations->getServiceId(),
                     'libelle' =>  $formations->getLibelle(),

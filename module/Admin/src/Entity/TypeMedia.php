@@ -1,5 +1,5 @@
 <?php
-namespace Application\Entity;
+namespace Admin\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

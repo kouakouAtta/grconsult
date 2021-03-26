@@ -1,7 +1,7 @@
 <?php
-namespace Application\Service;
+namespace Admin\Service;
 
-use Application\Entity\ContactForm;
+use Admin\Entity\ContactForm;
 use Doctrine\ORM\Mapping as ORM;
 
 

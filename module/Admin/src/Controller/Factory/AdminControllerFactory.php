@@ -1,18 +1,18 @@
 <?php
 /**
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
+ * @link      http://github.com/zendframework/ZendSkeletonAdmin for the canonical source repository
  * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application\Controller\Factory;
+namespace Admin\Controller\Factory;
 
-use Application\Controller\IndexController;
-use Application\Service\ServiceManager;
+use Admin\Controller\AdminController;
+use Admin\Service\ServiceManager;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
-class IndexControllerFactory implements FactoryInterface 
+class AdminControllerFactory implements FactoryInterface 
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null) {
         //$authService = $container->get(\Zend\Authentication\AuthenticationService::class);
@@ -20,7 +20,7 @@ class IndexControllerFactory implements FactoryInterface
         $serviceManager = $container->get(ServiceManager::class);
         //$entityManager = $container->get (\Doctrine\ORM\EntityManager::class);
 
-        return new IndexController($entityManager,$serviceManager);
+        return new AdminController($entityManager,$serviceManager);
     }
 
 }

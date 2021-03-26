@@ -1,11 +1,11 @@
 <?php
 /**
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
+ * @link      http://github.com/zendframework/ZendSkeletonAdmin for the canonical source repository
  * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application;
+namespace Admin;
 
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
@@ -17,7 +17,7 @@ return [
     'router' => [
         'routes' => [
             'admin.home' => [
-                'type' => Literal::class,
+                'type' => Segment::class,
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
@@ -26,7 +26,7 @@ return [
                     ],
                 ],
             ],
-            'application' => [
+            'admin' => [
                 'type'    => Segment::class,
                 'options' => [
                     'route'    => '/admin[/:action]',
@@ -37,71 +37,71 @@ return [
                 ],
             ],
             'nousConnaitre' => [
-                'type' => Literal::class,
+                'type' => Segment::class,
                 'options' => [
                     'route'    => '/nous-connaitre',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\AdminController::class,
                         'action'     => 'nousConnaitre',
                     ],
                 ],
             ],
              'prestationsService' => [
-                'type' => Literal::class,
+                'type' => Segment::class,
                 'options' => [
                     'route'    => '/prestations-service',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\AdminController::class,
                         'action'     => 'prestationsService',
                     ],
                 ],
             ],
             'contact' => [
-                'type' => Literal::class,
+                'type' => Segment::class,
                 'options' => [
                     'route'    => '/contact',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\AdminController::class,
                         'action'     => 'contact',
                     ],
                 ],
             ],
             'contactForm' => [
-                'type' => Literal::class,
+                'type' => Segment::class,
                 'options' => [
                     'route'    => '/contact-form',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\AdminController::class,
                         'action'     => 'contactForm',
                     ],
                 ],
             ],
              'galerie' => [
-                'type' => Literal::class,
+                'type' => Segment::class,
                 'options' => [
                     'route'    => '/galerie',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\AdminController::class,
                         'action'     => 'galerie',
                     ],
                 ],
             ],
             'contactForm' => [
-                'type' => Literal::class,
+                'type' => Segment::class,
                 'options' => [
                     'route'    => '/contact-form',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\AdminController::class,
                         'action'     => 'contactForm',
                     ],
                 ],
             ],
             'formations' => [
-                'type' => Literal::class,
+                'type' => Segment::class,
                 'options' => [
                     'route'    => '/formations',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\AdminController::class,
                         'action'     => 'formations',
                     ],
                 ],
@@ -121,7 +121,7 @@ return [
 //                'type' => StaticRoute::class,
 //                'options' => [
 //                    'dir_name'         => __DIR__ . '/../view',
-//                    'template_prefix'  => 'application/index/static',
+//                    'template_prefix'  => 'Admin/index/static',
 //                    'filename_pattern' => '/[a-z0-9_\-]+/',
 //                    'defaults' => [
 //                        'controller' => Controller\IndexController::class,
@@ -134,7 +134,7 @@ return [
     'controllers' => [
         'factories' => [
             //Controller\IndexController::class => InvokableFactory::class,
-            Controller\IndexController ::class => Controller\Factory\IndexControllerFactory::class,
+            Controller\AdminController ::class => Controller\Factory\AdminControllerFactory::class,
         ],
     ],
     // The following registers our custom view 
@@ -193,7 +193,7 @@ return [
         'exception_template'       => 'error/index',
         'template_map' => [
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+            'admin/index/index' => __DIR__ . '/../view/admin/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ],
