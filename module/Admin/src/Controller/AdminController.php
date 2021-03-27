@@ -61,6 +61,20 @@ class AdminController extends AbstractActionController
             ]);
         }
 
+        public function voirSectionAction($id)
+        {
+            //Nous récuperons les service ici
+            $service = $this->entityManager->getRepository(\Admin\Entity\Service::class)->find($id);
+            //Tableau contenant les services, sections par services y compris
+            $tabServices = [];
+            $sections = $this->entityManager->getRepository(\Admin\Entity\Section::class)->findOneBy(['prestationServiceId'=> $service->getServiceId()]);
+            //Pour chaque service nous recuperons les sections
+            
+            return new ViewModel([
+                'sections' => $sections,
+            ]);
+        }
+
         public function contactFormAction()
         {       
                 //Si le formulaire n'a pas été posté,

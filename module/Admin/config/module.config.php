@@ -56,6 +56,16 @@ return [
                     ],
                 ],
             ],
+            'voir-section' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route'    => '/voir-section[/:action[/:id]]',
+                    'defaults' => [
+                        'controller' => Controller\AdminController::class,
+                        'action'     => 'voirSection',
+                    ],
+                ],
+            ],
             'contact' => [
                 'type' => Segment::class,
                 'options' => [
