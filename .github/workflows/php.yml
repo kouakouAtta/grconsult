@@ -2,4 +2,4 @@ name: PHP Composer
 
 on:
   push:
-      tags: composer install
+      run: composer install
