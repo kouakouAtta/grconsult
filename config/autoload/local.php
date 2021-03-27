@@ -25,16 +25,16 @@ return [
             'password' => '<pass>',
         ],
     ],
-    // Database connection configuration. 'host'     => '127.0.0.1', 
+    // Database connection configuration.
     'doctrine' => [
         'connection' => [
             'orm_default' => [
                 'driverClass' => PDOMySqlDriver::class,
                 'params' => [
-                    'host'     => 'localhost',                    
-                    'user'     => 'grconsult',
-                    'password' => '*3Zzm68o',
-                    'dbname'   => 'grconsult_db',
+                    'host'     => '127.0.0.1',                    
+                    'user'     => 'atta',
+                    'password' => '15inp00062',
+                    'dbname'   => 'grconsult',
                     'driverOptions' => array(
                         \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
                     )

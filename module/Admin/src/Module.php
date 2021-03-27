@@ -7,6 +7,10 @@
 
 namespace Admin;
 
+use Admin\Listener\LayoutListener;
+use Laminas\Mvc\MvcEvent;
+use Laminas\View\Resolver\TemplateMapResolver;
+
 class Module
 {
     const VERSION = '3.0.3-dev';
@@ -15,4 +19,22 @@ class Module
     {
         return include __DIR__ . '/../config/module.config.php';
     }
+
+
+    public function onBootstrap(MvcEvent $event) : void
+    {
+        $application = $event->getApplication();
+
+        /** @var TemplateMapResolver $templateMapResolver */
+        $templateMapResolver = $application->getServiceManager()->get(
+            'ViewTemplateMapResolver'
+        );
+
+        // Create and register layout listener
+        $listener = new LayoutListener($templateMapResolver);
+        $listener->attach($application->getEventManager());
+    }
+
+
+
 }
